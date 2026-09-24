@@ -1,0 +1,12 @@
+node_modules/
+**/bin/
+**/obj/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+.vercel/
+.playwright-cli/
+.tmp-vercel-static/
+.tmp-vercel-final/
+*.log
+
+.vercel

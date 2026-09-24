@@ -1,0 +1,7 @@
+@media (max-width: 640px) {
+  .vp-doc table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
