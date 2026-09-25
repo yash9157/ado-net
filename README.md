@@ -1,34 +1,12 @@
-# ADO.NET + stored procedures + Identity/JWT
+# Employee Management documentation
 
-A small working ASP.NET Core API and a step-by-step documentation site.
-
-## Run the API
-
-Requires .NET 10 and SQL Server LocalDB on Windows:
+This repository contains a VitePress guide for the Employee Management ASP.NET Core API and Angular application in `samples/`.
 
 ```powershell
-sqllocaldb create AdoNetInterview
-sqllocaldb start AdoNetInterview
-dotnet run --project samples/StoreApi/StoreApi.csproj --urls http://localhost:5000
-```
-
-The API applies EF Core migrations on startup in Development. They create the database, Identity tables, Products table, and stored procedures.
-
-## Read the guide
-
-```powershell
-npm install
+npm ci
 npm run docs:dev
 ```
 
-Open the URL printed by VitePress and follow the guide. All code needed to build the API is shown directly in the documentation; the [sample project](samples/StoreApi) is only a local way to verify it.
+The website starts with [docs/index.md](docs/index.md) and includes the important source code, SQL setup, and end-to-end testing steps. Build the static site for Vercel with `npm run docs:build`. Vercel hosts the documentation only, not the API, Angular app, or SQL Server.
 
-## What the API shows
-
-- Register and login with EF Core Identity; login returns a JWT.
-- Protect product routes with `[Authorize]`.
-- Use ADO.NET to call stored procedures for product search and insert with `@ProductId OUTPUT`.
-- Use EF Core for Identity and migrations, not product requests.
-- Create or update procedures through an EF Core migration.
-
-The configured JWT key is a local Development example. Use a private `Jwt__Key` of at least 32 bytes for other environments.
+Copy `samples/EmployeeManagement.Api/appsettings.example.json` to `appsettings.json` and supply your own local SQL password and JWT signing key. The real settings file is Git-ignored. The API still has security gaps, including client-controlled registration roles and unprotected employee endpoints; do not use its authorization model in production without fixing them.

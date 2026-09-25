@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <div class="card mx-auto" style="max-width:420px">
+    <div class="card-body">
+      <h4 class="mb-3">Login</h4>
+
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" formControlName="email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" />
+          <button class="btn btn-outline-secondary eye-btn" type="button" (click)="togglePassword()" aria-label="Toggle password visibility">
+            <ng-container *ngIf="!showPassword">
+              <!-- eye icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
+                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#fff"/>
+              </svg>
+            </ng-container>
+            <ng-container *ngIf="showPassword">
+              <!-- eye slash icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M13.359 11.238C12.185 12.234 10.66 13 8 13c-3.866 0-7-5-7-5s1.84-2.813 4.5-4.03L2.354 1.854.646 3.561l2.055 2.055C1.97 7.06 1 8.5 1 8.5s3 5.5 7 5.5c1.657 0 3.123-.395 4.293-1.097l.066.066L15.354 13l1.06-1.06-3.055-3.055-0.06.06z"/>
+              </svg>
+            </ng-container>
+          </button>
+        </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit" [disabled]="loading || form.invalid">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Login
+          </button>
+          <a class="btn btn-link" routerLink="/register">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

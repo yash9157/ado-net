@@ -1,29 +1,23 @@
-# ADO.NET + stored procedures in a .NET API
+# Employee Management: .NET API + Angular
 
-This website is the complete interview example. You do not need a separate source repository to read it: the commands, C# classes, stored procedure migration, and HTTP requests are all on these pages.
+This is a step-by-step guide to the two Employee Management projects. The ASP.NET Core 8 API uses ADO.NET and SQL Server stored procedures. The Angular 21 app calls that API for registration, login, and employee management. The important source code appears on these pages, so an interview reader does not need to open the project folders.
 
-You will build one small Store API. **EF Core Identity** manages users and passwords. Login returns a **JWT**. Protected product endpoints use **ADO.NET** to call two SQL Server stored procedures. **EF Core migrations** create the tables and procedures.
+## Follow the complete path
 
-## Build it in order
+1. [Set up the API](api-setup.md) — packages, SQL connection, JWT, CORS.
+2. [Create the database](database.md) — tables, procedures, first department.
+3. [Register and log in](api-auth.md) — password hashing and JWT.
+4. [Build employee endpoints](api-employees.md) — ADO.NET CRUD calls.
+5. [Set up Angular](angular-setup.md) — API URL, routing, HTTP client.
+6. [Build Angular screens](angular-flow.md) — auth, list, add, edit, delete.
+7. [Run and test everything](run-and-test.md) — three processes and real requests.
 
-1. [Create the API and configure SQL Server](setup.md)
-2. [Add the Product model and EF Core Identity](ef-core-identity.md)
-3. [Add registration, login, and JWT](authentication.md)
-4. [Prepare the stored procedure migration](stored-procedures.md)
-5. [Call the procedures using ADO.NET](ado-net-methods.md)
-6. [Add product endpoints and test the flow](web-api-example.md)
+`Angular form → HTTP service → ASP.NET controller → SqlCommand → stored procedure → SQL Server`
 
-Start with [.NET 10 and SQL Server LocalDB](setup.md). Copy each displayed code block into the project as you go. The [final page](web-api-example.md#try-the-api) generates migrations, starts the API, and tests the whole flow.
+This API does **not** use EF Core, EF Core Identity stores, or automatic migrations. It uses a SQL setup script and ASP.NET Core's `PasswordHasher<User>`.
 
-## Say it in an interview
+::: warning Security boundary
+The supplied sample has a hard-coded SQL password and JWT key, accepts a role from the registration request, and does not put `[Authorize]` on employee endpoints. It is an interview learning sample, not a production-ready secure system. The Angular route guard is only client-side navigation protection.
+:::
 
-“Identity stores users in SQL Server and checks password hashes. Login returns a JWT. Protected product endpoints call a reusable ADO.NET repository, which uses typed `SqlParameter` values to execute stored procedures. EF Core migrations create the database objects; product requests do not use EF Core.”
-
-| Request | What happens |
-|---|---|
-| `POST /api/auth/register` | Identity creates a user |
-| `POST /api/auth/login` | Identity checks the password and returns a JWT |
-| `POST /api/products` | ADO.NET calls `dbo.Products_Create` and reads its output ID |
-| `GET /api/products?minimumPrice=1000` | ADO.NET calls `dbo.Products_SearchByMinimumPrice` and reads rows |
-
-Vercel hosts this documentation website. The .NET API and SQL Server run on your machine while you practice.
+Vercel hosts this documentation website only. The API, SQL Server, and Angular app must run separately.

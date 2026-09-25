@@ -8,5 +8,10 @@ docs/.vitepress/dist/
 .tmp-vercel-static/
 .tmp-vercel-final/
 *.log
+*.csproj.user
+**/.angular/
+**/dist/
+**/.vs/
+samples/EmployeeManagement.Api/appsettings.json
 
 .vercel

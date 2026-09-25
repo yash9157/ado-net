@@ -1,0 +1,105 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="mb-3">{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h4>
+
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">First Name</label>
+            <input class="form-control" formControlName="firstName" />
+            <div *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid" class="text-danger">
+              <div *ngIf="form.get('firstName')?.errors?.['required']">First Name is required.</div>
+              <div *ngIf="form.get('firstName')?.errors?.['minlength']">Minimum 2 characters.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" formControlName="lastName" />
+            <div *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid" class="text-danger">
+              <div *ngIf="form.get('lastName')?.errors?.['required']">Last Name is required.</div>
+              <div *ngIf="form.get('lastName')?.errors?.['minlength']">Minimum 2 characters.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" formControlName="email" />
+          <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-danger">
+            <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="form.get('email')?.errors?.['email']">Invalid email.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Phone</label>
+            <input class="form-control" formControlName="phone" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Salary</label>
+            <input class="form-control" type="number" formControlName="salary" min="0" />
+            <div *ngIf="form.get('salary')?.touched && form.get('salary')?.invalid" class="text-danger">
+              <div *ngIf="form.get('salary')?.errors?.['min']">Salary must be 0 or more.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Date Of Birth</label>
+            <input class="form-control" type="date" formControlName="dateOfBirth" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Joining Date</label>
+            <input class="form-control" type="date" formControlName="joiningDate" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label d-block">Gender</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="gender" value="Male" id="gMale" />
+            <label class="form-check-label" for="gMale">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="gender" value="Female" id="gFemale" />
+            <label class="form-check-label" for="gFemale">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="gender" value="Other" id="gOther" />
+            <label class="form-check-label" for="gOther">Other</label>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input class="form-check-input" type="checkbox" formControlName="isActive" id="isActive" />
+          <label class="form-check-label" for="isActive">Is Active</label>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Department</label>
+          <select class="form-select" formControlName="departmentId">
+            <option [ngValue]="null">-- Select Department --</option>
+            <option *ngFor="let d of departments" [ngValue]="d.departmentId">{{ d.departmentName }}</option>
+          </select>
+          <div *ngIf="form.get('departmentId')?.touched && form.get('departmentId')?.invalid" class="text-danger">
+            <div *ngIf="form.get('departmentId')?.errors?.['required']">Department is required.</div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            {{ isEdit ? 'Update' : 'Create' }}
+          </button>
+          <button class="btn btn-secondary" type="button" (click)="cancel()" [disabled]="loading">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

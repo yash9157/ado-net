@@ -1,0 +1,22 @@
+/* Style the eye toggle button to match input height and remove double borders */
+.input-group .eye-btn {
+  border-left: 0;
+  padding: 0.35rem 0.5rem;
+  width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+}
+
+.input-group .eye-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Make sure the input and button appear as a single control */
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
