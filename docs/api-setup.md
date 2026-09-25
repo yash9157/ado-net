@@ -14,6 +14,8 @@ dotnet add package Swashbuckle.AspNetCore --version 6.6.2
 
 Remove template WeatherForecast files if present. Add the `Models`, `DTO`, and `Controllers` classes shown on later pages. The project file is:
 
+**File:** `EmployeeManagement.Api.csproj` — **Use:** Defines .NET 8 and API packages.
+
 <<< ../samples/EmployeeManagement.Api/EmployeeManagement.Api.csproj{xml}
 
 ## Configure SQL Server and JWT
@@ -40,6 +42,8 @@ For a real deployment, use .NET user secrets or environment variables for creden
 ## Register middleware and Swagger
 
 This is the complete `Program.cs`. It configures JWT validation, permits the Angular origin `http://localhost:4200`, enables Swagger in Development, and maps controllers. Authentication runs before authorization:
+
+**File:** `Program.cs` — **Use:** Configures JWT, CORS, Swagger, and middleware.
 
 <<< ../samples/EmployeeManagement.Api/Program.cs{csharp}
 

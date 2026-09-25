@@ -13,6 +13,8 @@ GO
 
 Then execute the following script against that server. It starts with `USE [EmployeeManagementDB]`, so the database must already exist. The script is complete but intended for a **fresh** database; running its `CREATE TABLE` statements twice will fail.
 
+**File:** `samples/script.sql` — **Use:** Creates tables and stored procedures.
+
 <<< ../samples/script.sql{sql}
 
 It creates `Departments`, `Employees`, `Users`, and eight procedures:
