@@ -18,7 +18,7 @@ Remove template WeatherForecast files if present. Add the `Models`, `DTO`, and `
 
 ## Configure SQL Server and JWT
 
-The code reads `ConnectionStrings:DefaultConnection` and the `Jwt` settings. Copy `appsettings.example.json` to `appsettings.json`, then replace the placeholders locally. The real `appsettings.json` is Git-ignored; never publish your SQL password or signing key:
+The code reads `ConnectionStrings:DefaultConnection` and the `Jwt` settings. The supplied API includes `appsettings.json`. Its values are public in this repository; replace them before connecting to any real database or deploying the API. A safe configuration template is:
 
 ```json
 {
@@ -35,7 +35,7 @@ The code reads `ConnectionStrings:DefaultConnection` and the `Jwt` settings. Cop
 }
 ```
 
-For a real deployment, use .NET user secrets or environment variables for credentials. Keep the local `appsettings.json` private.
+For a real deployment, use .NET user secrets or environment variables for credentials. Do not rely on the publicly committed settings as secrets.
 
 ## Register middleware and Swagger
 

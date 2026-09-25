@@ -12,6 +12,5 @@ docs/.vitepress/dist/
 **/.angular/
 **/dist/
 **/.vs/
-samples/EmployeeManagement.Api/appsettings.json
 
 .vercel

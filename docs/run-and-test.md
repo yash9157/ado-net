@@ -4,7 +4,7 @@ Run SQL Server, the API, and Angular separately. Vercel only hosts these documen
 
 ## 1. Prepare SQL Server
 
-Start SQL Server on `localhost,1433`, create `EmployeeManagementDB`, run the [schema script](database.md), and insert a department. Copy `samples/EmployeeManagement.Api/appsettings.example.json` to `appsettings.json` in the same folder, then put your local SQL password and a private JWT key in that Git-ignored file.
+Start SQL Server on `localhost,1433`, create `EmployeeManagementDB`, run the [schema script](database.md), and insert a department. The API includes `appsettings.json`; make sure its SQL connection matches your local server. Its committed password and JWT key are public values, not production secrets.
 
 ## 2. Start the API
 
